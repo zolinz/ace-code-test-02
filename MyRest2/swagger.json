@@ -1,0 +1,46 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "MyRest2",
+    "version" : "1.0.0",
+    "description" : "MyRest2"
+  },
+  "paths" : {
+    "/student" : {
+      "get" : {
+        "operationId" : "getStudent",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/student"
+              }
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve student",
+        "parameters" : [ ]
+      }
+    }
+  },
+  "basePath" : "/myrest2/v1",
+  "definitions" : {
+    "student" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "age" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}
