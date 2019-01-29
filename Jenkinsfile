@@ -35,8 +35,8 @@ node {
             cd \${CODE_DIR}
             mkdir bars_aceonly
             chmod 777 bars_aceonly
-            sleep infinity
-            cp /root/workspace/\${CODE_DIR}/zolitest5.bar bars_aceonly
+            #sleep infinity
+            cp /root/workspace/zolitest5.bar /root/workspace/\${CODE_DIR}/bars_aceonly
           #  sleep infinity
        """
 
