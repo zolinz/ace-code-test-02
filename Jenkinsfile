@@ -7,12 +7,12 @@ node {
    stage('clone repo'){
     checkout scm
    }
-
+/*
 
    stage('clone app source code'){
     git branch: 'master', url: 'https://github.com/zolinz/ace-code-test-02.git'
    }
-
+*/
 
    stage('build bar file'){
      sh """#!/bin/bash
@@ -32,6 +32,10 @@ node {
            echo /root/workspace/\${CODE_DIR}
             mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest2.bar -a MyRest2
             mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest2.bar -a MyRest2
+            cd \${CODE_DIR}
+            mkdir bars_aceonly
+            chmod 777 bars_aceonly
+            cp /root/workspace/\${CODE_DIR}/zolitest2.bar bars_aceonly
        """
 
    }
