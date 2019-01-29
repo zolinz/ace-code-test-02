@@ -19,41 +19,38 @@ node {
 
    stage('build bar file'){
      sh """#!/bin/bash
+            echo "********** setting up XVBF and mqsiprofile ***************"
             /usr/bin/Xvfb :100 &
              export DISPLAY=":100"
              cd /opt/ibm/ace-11.0.0.2
              ./ace make registry global accept license silently
             . /opt/ibm/ace-11.0.0.2/server/bin/mqsiprofile
-            cd /root/workspace
-            pwd
-            echo \$OLDPWD
-            ls | egrep  '.*[^tmp]\$'
-            CODE_DIR=`ls | egrep  '.*[^tmp]\$'`
-            export CODE_DIR
-            echo \$CODE_DIR
-           #sleep infinity
-           echo /root/workspace/\${CODE_DIR}
-            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
-            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
-            cd \${CODE_DIR}
+
+            #cd /root/workspace
+            #pwd
+            #echo \$OLDPWD
+            #ls | egrep  '.*[^tmp]\$'
+            #CODE_DIR=`ls | egrep  '.*[^tmp]\$'`
+            #export CODE_DIR
+            #echo \$CODE_DIR
+            #sleep infinity
+            #echo /root/workspace/\${CODE_DIR}
+            echo "**************** create BAR file **************************"
+            mqsicreatebar -data $WORKSPACE/ -b myapplicaion01.bar -a MyRest2
+            mqsicreatebar -data $WORKSPACE/ -b myapplication01.bar -a MyRest2
+            cd $WORKSPACE
             mkdir bars_aceonly
             chmod 777 bars_aceonly
-            #sleep infinity
-            cp /root/workspace/zolitest5.bar /root/workspace/\${CODE_DIR}/bars_aceonly
-          #  sleep infinity
+            cp myapplication01.bar bars_aceonly
        """
 
    }
 
 
    stage('build image and push to ICP registry'){
-
-
+        echo "*********** build ace image with BAR file then push to ICP registry ***************"
         sh """
         #!/bin/bash
-        #sleep infinity
-        #cp /root/workspace/zolitest2.bar /root/workspace/ibm-ace-test
-
         docker login  -u admin -p admin mycluster.icp:8500
         docker build -t ${imageName} .
         docker push ${imageName}
@@ -85,7 +82,7 @@ node {
 
 */
    stage('deploy new image'){
-
+        echo "******************* patch deployment with new image then rollout *****************"
         sh """
         docker login  -u admin -p admin mycluster.icp:8500
         echo aceappzoli-$env.BUILD_NUMBER
