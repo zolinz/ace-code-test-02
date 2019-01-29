@@ -35,10 +35,11 @@ node {
             #echo \$CODE_DIR
             #sleep infinity
             #echo /root/workspace/\${CODE_DIR}
+            cd $WORKSPACE
             echo "**************** create BAR file **************************"
             mqsicreatebar -data $WORKSPACE/ -b myapplicaion01.bar -a MyRest2
             mqsicreatebar -data $WORKSPACE/ -b myapplication01.bar -a MyRest2
-            cd $WORKSPACE
+
             mkdir bars_aceonly
             chmod 777 bars_aceonly
             cp myapplication01.bar bars_aceonly
