@@ -6,6 +6,7 @@ node {
 
    stage('clone repo'){
    echo imageName
+   echo JENKINS_HOME
     checkout scm
    }
 /*
