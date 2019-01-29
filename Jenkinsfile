@@ -89,7 +89,7 @@ node {
         sh """
         docker login  -u admin -p admin mycluster.icp:8500
         echo \${env.BUILD_NUMBER}
-       kubectl get image aceappzoli-\${env.BUILD_NUMBER}  -n=ace -o yaml | sed 's/scope: namespace/scope: global/g' | kubectl replace -f -
+       kubectl get image aceappzoli-\$env.BUILD_NUMBER  -n=ace -o yaml | sed 's/scope: namespace/scope: global/g' | kubectl replace -f -
          kubectl set image deployment/zoli-ace-01-ibm-ace zoli-ace-01-ibm-ace=${imageName}
 
 
