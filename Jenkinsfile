@@ -1,6 +1,6 @@
 node {
 
-    imageName = "mycluster.icp:8500/ace/aceappzoli-"+${env.BUILD_NUMBER} 
+    imageName = "mycluster.icp:8500/ace/aceappzoli-"+env.BUILD_NUMBER
 
 
 
