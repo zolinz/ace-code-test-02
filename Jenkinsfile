@@ -32,6 +32,7 @@ node {
            echo /root/workspace/\${CODE_DIR}
             mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
             mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
+            sleep infinity
             cd \${CODE_DIR}
             mkdir bars_aceonly
             chmod 777 bars_aceonly
