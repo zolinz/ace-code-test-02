@@ -1,6 +1,6 @@
 node {
 
-    imageName = "mycluster.icp:8500/ace/aceappzoli8"
+    imageName = "mycluster.icp:8500/ace/aceappzoli9"
 
 
 
@@ -30,12 +30,12 @@ node {
             echo \$CODE_DIR
            #sleep infinity
            echo /root/workspace/\${CODE_DIR}
-            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest2.bar -a MyRest2
-            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest2.bar -a MyRest2
+            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
+            mqsicreatebar -data /root/workspace/\${CODE_DIR}/ -b zolitest5.bar -a MyRest2
             cd \${CODE_DIR}
             mkdir bars_aceonly
             chmod 777 bars_aceonly
-            cp /root/workspace/\${CODE_DIR}/zolitest2.bar bars_aceonly
+            cp /root/workspace/\${CODE_DIR}/zolitest5.bar bars_aceonly
        """
 
    }
@@ -83,7 +83,7 @@ node {
 
         sh """
         docker login  -u admin -p admin mycluster.icp:8500
-       kubectl get image aceappzoli8 -n=ace -o yaml | sed 's/scope: namespace/scope: global/g' | kubectl replace -f -
+       kubectl get image aceappzoli9 -n=ace -o yaml | sed 's/scope: namespace/scope: global/g' | kubectl replace -f -
          kubectl set image deployment/zoli-ace-01-ibm-ace zoli-ace-01-ibm-ace=${imageName}
 
 
