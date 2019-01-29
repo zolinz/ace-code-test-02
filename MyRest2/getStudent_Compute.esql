@@ -28,6 +28,10 @@ CREATE COMPUTE MODULE getStudent_Compute
 		SET OutputRoot.JSON.Data.Item[2].student.name = 'Aquaman';
 		SET OutputRoot.JSON.Data.Item[2].student.age = 25;
 	
+	SET OutputRoot.JSON.Data.Item[3].student.name = 'Batman';
+		SET OutputRoot.JSON.Data.Item[3].student.age = 25;
+	
+	
 	
 		
 		
