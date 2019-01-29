@@ -46,8 +46,8 @@ node {
 
         sh """
         #!/bin/bash
-        sleep infinity
-        cp /root/workspace/zolitest2.bar /root/workspace/ibm-ace-test
+        #sleep infinity
+        #cp /root/workspace/zolitest2.bar /root/workspace/ibm-ace-test
 
         docker login  -u admin -p admin mycluster.icp:8500
         docker build -t ${imageName} .
