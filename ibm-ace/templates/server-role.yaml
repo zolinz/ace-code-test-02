@@ -28,3 +28,11 @@ rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["services"]
   verbs: ["get","list"]
+- apiGroups:
+    - policy
+  resourceNames:
+    - ibm-anyuid-psp
+  resources:
+    - podsecuritypolicies
+  verbs:
+    - use
